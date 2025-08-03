@@ -23,12 +23,17 @@ import com.child.service.UtilisateurService;
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
 @Autowired
+    private final BCryptPasswordEncoder passwordEncoder;
+@Autowired
 private UtilisateurRepo utilisateurRepo;
 @Autowired private RoleRepo roleRepo;
-@Autowired private BCryptPasswordEncoder passwordEncoder;
-@Autowired private DocteurRepo docteurRepo;
 @Autowired
 private JavaMailSender mailSender;
+
+
+    UtilisateurServiceImpl(BCryptPasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
 	
 
