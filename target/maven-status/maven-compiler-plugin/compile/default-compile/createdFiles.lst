@@ -14,6 +14,8 @@ com\child\model\auth\ResponseToken.class
 com\child\model\RoleUtilisateur.class
 com\child\configuration\CorsConfiguration.class
 com\child\configuration\CorsConfiguration$1.class
+com\child\Utils\AdminInitializer.class
 com\child\model\auth\RequestToken$RequestTokenBuilder.class
 com\child\model\auth\RequestToken.class
 com\child\service\impl\UtilisateurServiceImpl.class
+com\child\controller\AuthenticationController.class
