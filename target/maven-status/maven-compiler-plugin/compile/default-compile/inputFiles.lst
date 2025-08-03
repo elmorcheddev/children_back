@@ -1,3 +1,16 @@
 E:\dev\child_back\src\main\java\com\child\ChildApplication.java
-E:\dev\child_back\src\main\java\com\child\model\Role.java
+E:\dev\child_back\src\main\java\com\child\configuration\ApplicationRequestFilter.java
+E:\dev\child_back\src\main\java\com\child\configuration\CorsConfiguration.java
+E:\dev\child_back\src\main\java\com\child\configuration\CustomUserDetailService.java
+E:\dev\child_back\src\main\java\com\child\configuration\JwtAuthenticationEntrePoint.java
+E:\dev\child_back\src\main\java\com\child\configuration\SecurityConfig.java
+E:\dev\child_back\src\main\java\com\child\controller\UtilisateuController.java
+E:\dev\child_back\src\main\java\com\child\model\auth\RequestToken.java
+E:\dev\child_back\src\main\java\com\child\model\auth\ResponseToken.java
+E:\dev\child_back\src\main\java\com\child\model\RoleUtilisateur.java
 E:\dev\child_back\src\main\java\com\child\model\Utilisateur.java
+E:\dev\child_back\src\main\java\com\child\repo\RoleRepo.java
+E:\dev\child_back\src\main\java\com\child\repo\UtilisateurRepo.java
+E:\dev\child_back\src\main\java\com\child\service\impl\UtilisateurServiceImpl.java
+E:\dev\child_back\src\main\java\com\child\service\UtilisateurService.java
+E:\dev\child_back\src\main\java\com\child\Utils\JwtUtils.java
