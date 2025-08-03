@@ -1,57 +1,50 @@
 package com.child.model;
 
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Set;
 
+import com.child.model.RoleUtilisateur;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity
-@Table(name = "utilisateurs")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)  
+
 public class Utilisateur {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String nom;
+	private String prenom;
+	private String adresse;
+	private String tel;
+	private String cin;
+    private String resetToken;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+ 	private String email;
+	private String password;	
+	private String confirmPasswrod;	
+	private String dateNaissance;
+	private boolean etat;
 
-    // Personal Information
-    @Column(nullable = false, length = 50)
-    private String nom;
-
-    @Column(nullable = false, length = 50)
-    private String prenom;
-
-    @Column(nullable = false, unique = true, length = 100)
-    private String email;
-
-    @Column(nullable = false)
-    private String motDePasse;
-
-    @Column(length = 20)
-    private String telephone;
-
-    @Column(length = 255)
-    private String adresse;
-
-    private LocalDateTime dateNaissance;
-
-    @Column(length = 10)
-    private String  genre; // e.g., "Homme", "Femme", "Autre"
-
-    // Account status
-    private boolean actif = true;
-
-    // Timestamps
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime dateCreation;
-
-    private LocalDateTime dateModification;
-
-    // Roles (many-to-many relationship)
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-        name = "utilisateur_roles",
-        joinColumns = @JoinColumn(name = "utilisateur_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+	@JoinTable(name = "UTILISATEUR_ROLE", joinColumns = { @JoinColumn(name = "ID_UTILISATEUR") }, inverseJoinColumns = {
+			@JoinColumn(name = "ID_ROLE") })
+	private Set<RoleUtilisateur> roleUtilisateurs;
 }
