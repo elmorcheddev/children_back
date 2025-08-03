@@ -1,24 +1,26 @@
 spring:
   application:
     name: child
-    
+
   datasource:
-    url: jdbc:mysql://sql100.infinityfree.com:3306/if0_39579209_child
-    username: if0_39579209
-    password: oSSMbBCymM58Rh
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://dpg-d27l7tvdiees73conu7g-a:5432/child
+    username: child_user
+    password: BY6cckDB1B7Q03NvvbW2s7RmwXAihgky
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     generate-ddl: true
+    hibernate:
+      ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-        ddl-auto: update
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
   servlet:
-     multipart:
-         max-file-size: 100MB
-         max-request-size: 100MB
- 
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
   mail:
     host: smtp.gmail.com
     port: 587
