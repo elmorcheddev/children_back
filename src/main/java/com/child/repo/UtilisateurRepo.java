@@ -17,8 +17,7 @@ public interface UtilisateurRepo extends JpaRepository<Utilisateur, Long>{
 	 @Query("SELECT u FROM Utilisateur u JOIN u.roleUtilisateurs r WHERE r.nomRoles = :roleName")
 	    List<Utilisateur> findByRoleName(@Param("roleName") String roleName);
 	Utilisateur findByResetToken(String token);
-	 @Query("SELECT FUNCTION('DATE', p.dateCreation), COUNT(p) FROM Patient p GROUP BY FUNCTION('DATE', p.dateCreation)")
-	    List<Object[]> countPatientsByDay();
+	
 	 	boolean existsByRoleUtilisateursContains(Set<RoleUtilisateur> singleton);
 
 }

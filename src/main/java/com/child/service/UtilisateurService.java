@@ -13,7 +13,6 @@ public interface UtilisateurService {
 			Utilisateur ajouterSuperAdmin(Utilisateur utilisateur);
 	    List<Utilisateur> findByRoleName(String roleName);
 		Utilisateur findByIdUtilisateur(Long id);
-	    List<Object[]> countPatientsByDateCreation();
 		List<Utilisateur> listAll();
  
 

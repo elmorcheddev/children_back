@@ -68,8 +68,5 @@ public List<Utilisateur> listPatient(){
 public Utilisateur getByID(@PathVariable Long id) {
 	return utilisateurService.findByIdUtilisateur(id);
 }
-@GetMapping("/patientcountByDate")
-public List<Object[]> getCountPatientsByDateCreation() {
-    return utilisateurService. countPatientsByDateCreation();
-}
+
 }

@@ -113,11 +113,7 @@ private JavaMailSender mailSender;
         utilisateurRepo.save(user);
     }
    
-	@Override
-	public List<Object[]> countPatientsByDateCreation() {
-		// TODO Auto-generated method stub
-        return utilisateurRepo.countPatientsByDay();
-	}
+
 
 
 
