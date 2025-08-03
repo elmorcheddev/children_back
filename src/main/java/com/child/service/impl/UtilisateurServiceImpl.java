@@ -39,8 +39,8 @@ private JavaMailSender mailSender;
 
 	@Override
 	public Utilisateur ajouterSuperAdmin(Utilisateur utilisateur) {
- 	        RoleUtilisateur roles = roleRepo.findByNomRoles("SUPERADMIN");
- 		    boolean adminbyRolesExists = utilisateurRepo.existsByRoleUtilisateursContains(Collections.singleton(roleRepo.findByNomRoles("SUPERADMIN")));
+ 	        RoleUtilisateur roles = roleRepo.findByNomRoles("ADMIN");
+ 		    boolean adminbyRolesExists = utilisateurRepo.existsByRoleUtilisateursContains(Collections.singleton(roleRepo.findByNomRoles("ADMIN")));
 
 	        Set<RoleUtilisateur> listRole=new HashSet<>();
 	         listRole.add(roles);

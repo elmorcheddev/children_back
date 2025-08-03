@@ -37,13 +37,7 @@ public class SecurityConfig {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(request -> request.requestMatchers("/auth/**").permitAll()
- 						.requestMatchers("/api/utilisateur/inscriptionPatient").permitAll()
  						.requestMatchers("/api/utilisateur/ajouterSuperAdmin").permitAll()
- 						.requestMatchers("/api/utilisateur/findBySpecialite/**").permitAll()
- 						.requestMatchers("/api/utilisateur/listdocteurPatient").permitAll()
- 						.requestMatchers("/api/spec/all").permitAll()
- 						.requestMatchers("/api/spec/byIdForPatient/**").permitAll()
- 						.requestMatchers("/api/**").permitAll()
                 		 
                    
                         .anyRequest().authenticated())
