@@ -42,11 +42,11 @@ public class AdminInitializer implements CommandLineRunner {
          listRole.add(roles);
          Utilisateur utilisateur = new Utilisateur();
          if (!adminbyRolesExists) {
-        	 utilisateur.setNom(utilisateur.getNom());
-        	 utilisateur.setPrenom(utilisateur.getPrenom());
-        	 utilisateur.setEmail(utilisateur.getEmail());
-        	 utilisateur.setPassword(new BCryptPasswordEncoder().encode(utilisateur.getPassword()));
-        	 utilisateur.setAdresse(utilisateur.getAdresse());
+        	 utilisateur.setNom("NASSREDDINE");
+        	 utilisateur.setPrenom("MORCHED");
+        	 utilisateur.setEmail("admin@admin.com");
+        	 utilisateur.setPassword(new BCryptPasswordEncoder().encode("adminadmin"));
+        	 utilisateur.setAdresse("tunis");
 	        	 utilisateur.setEtat(true);
 	        	 utilisateur.setRoleUtilisateurs(listRole);
         	 utilisateur.setEtat(true);
