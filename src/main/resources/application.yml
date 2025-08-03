@@ -3,7 +3,7 @@ spring:
     name: child
 
   datasource:
-    url: jdbc:postgresql://dpg-d27l7tvdiees73conu7g-a:5432/children
+    url: jdbc:postgresql://dpg-d27o5pe3jp1c73fhs7ug-a:5432/children
     username: children_user
     password: mUSj7Kwz8spEtt2p6zS5tgwHazkjycLu
     driver-class-name: org.postgresql.Driver
