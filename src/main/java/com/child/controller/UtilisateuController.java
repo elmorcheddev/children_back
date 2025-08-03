@@ -43,6 +43,10 @@ public List<Utilisateur> listDocteurs(){
 public List<Utilisateur> listdocteurPatient(){
 	return utilisateurService.findByRoleName("DOCTEUR");
 }
+@GetMapping(value = "/all")
+public List<Utilisateur> all(){
+	return utilisateurService.listAll();
+}
 @GetMapping(value = "/listAssistant")
 public List<Utilisateur> listAssistant(){
 	return utilisateurService.findByRoleName("ASSISTANT");

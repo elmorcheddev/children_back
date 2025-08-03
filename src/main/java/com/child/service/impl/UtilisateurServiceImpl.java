@@ -118,4 +118,12 @@ private JavaMailSender mailSender;
 		// TODO Auto-generated method stub
         return utilisateurRepo.countPatientsByDay();
 	}
+
+
+
+	@Override
+	public List<Utilisateur> listAll() {
+		// TODO Auto-generated method stub
+		return utilisateurRepo.findAll();
+	}
 } 

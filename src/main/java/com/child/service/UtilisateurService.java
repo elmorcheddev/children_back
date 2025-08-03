@@ -14,6 +14,7 @@ public interface UtilisateurService {
 	    List<Utilisateur> findByRoleName(String roleName);
 		Utilisateur findByIdUtilisateur(Long id);
 	    List<Object[]> countPatientsByDateCreation();
+		List<Utilisateur> listAll();
  
 
 }
