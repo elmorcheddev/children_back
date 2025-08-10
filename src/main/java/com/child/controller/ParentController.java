@@ -22,9 +22,9 @@ public class ParentController {
     }
 
     // POST /api/parents?utilisateurId=15
-    @PostMapping
+    @PostMapping(value="/create/{utilisateurId}")
     public ResponseEntity<Parent> createParent(
-            @RequestParam Long utilisateurId,
+            @PathVariable Long utilisateurId,
             @Valid @RequestBody Parent parent) {
         
         Parent createdParent = parentService.createParent(parent, utilisateurId);
