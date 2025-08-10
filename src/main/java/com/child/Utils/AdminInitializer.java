@@ -29,11 +29,23 @@ public class AdminInitializer implements CommandLineRunner {
 
         // Ensure required roles exist
         RoleUtilisateur ADMIN = roleUtilisateurRepo.findByNomRoles("ADMIN");
+        RoleUtilisateur PARENT = roleUtilisateurRepo.findByNomRoles("PARENT");
+        RoleUtilisateur TEACHER = roleUtilisateurRepo.findByNomRoles("TEACHER");
 
         if (ADMIN == null) {
             ADMIN = new RoleUtilisateur();
             ADMIN.setNomRoles("ADMIN");
             roleUtilisateurRepo.save(ADMIN);
+        } 
+        if (PARENT == null) {
+        	PARENT = new RoleUtilisateur();
+        	PARENT.setNomRoles("PARENT");
+            roleUtilisateurRepo.save(PARENT);
+        }
+        if (TEACHER == null) {
+        	TEACHER = new RoleUtilisateur();
+        	TEACHER.setNomRoles("TEACHER");
+            roleUtilisateurRepo.save(TEACHER);
         }
         RoleUtilisateur roles = roleUtilisateurRepo.findByNomRoles("ADMIN");
 		    boolean adminbyRolesExists = utilisateurRepo.existsByRoleUtilisateursContains(Collections.singleton(roleUtilisateurRepo.findByNomRoles("ADMIN")));
