@@ -4,45 +4,51 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.child.model.Utilisateur;
 import com.child.service.UtilisateurService;
 
+import jakarta.validation.Valid;
 @RestController
-@RequestMapping("/api/utilisateur")
+@RequestMapping("/api/utilisateurs")
 public class UtilisateurController {
 
-    @Autowired
-    private UtilisateurService utilisateurService;
+    private final UtilisateurService utilisateurService;
 
-    @GetMapping("/all")
-    public List<Utilisateur> all() {
-        return utilisateurService.listAll();
+    public UtilisateurController(UtilisateurService utilisateurService) {
+        this.utilisateurService = utilisateurService;
     }
 
-    @GetMapping("/byId/{id}")
+    @GetMapping("/all")
+    public ResponseEntity<List<Utilisateur>> all() {
+        return ResponseEntity.ok(utilisateurService.listAll());
+    }
+
+    @PostMapping
+    public ResponseEntity<Utilisateur> createUser(@Valid @RequestBody Utilisateur utilisateur) {
+        Utilisateur createdUser = utilisateurService.createUser(utilisateur);
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
     public ResponseEntity<Utilisateur> getById(@PathVariable Long id) {
         Utilisateur u = utilisateurService.findByIdUtilisateur(id);
         if (u == null) return ResponseEntity.notFound().build();
         return ResponseEntity.ok(u);
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Utilisateur> create(@RequestBody Utilisateur utilisateur) {
-        Utilisateur saved = utilisateurService.ajouterSuperAdmin(utilisateur);
-        return ResponseEntity.ok(saved);
-    }
-
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Utilisateur> update(@PathVariable Long id, @RequestBody Utilisateur utilisateur) {
-      
+        // Implémenter update dans service si besoin
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-         return ResponseEntity.noContent().build();
+        // Implémenter delete dans service si besoin
+        return ResponseEntity.noContent().build();
     }
 }

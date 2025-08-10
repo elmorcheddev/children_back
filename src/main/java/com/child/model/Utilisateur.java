@@ -1,50 +1,51 @@
 package com.child.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+
 import java.util.Set;
 
-import com.child.model.RoleUtilisateur;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Entity
-@Data
+@Table(name = "utilisateurs")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)  
-
+@Builder
 public class Utilisateur {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String nom;
-	private String prenom;
-	private String adresse;
-	private String tel;
-	private String cin;
-    private String resetToken;
 
- 	private String email;
-	private String password;	
-	private String confirmPasswrod;	
-	private String dateNaissance;
-	private boolean etat;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-	@JoinTable(name = "UTILISATEUR_ROLE", joinColumns = { @JoinColumn(name = "ID_UTILISATEUR") }, inverseJoinColumns = {
-			@JoinColumn(name = "ID_ROLE") })
-	private Set<RoleUtilisateur> roleUtilisateurs;
+    @NotBlank
+    private String nom;
+
+    @NotBlank
+    private String prenom;
+
+    @Email
+    @Column(unique = true, nullable = false)
+    private String email;
+
+    @NotBlank
+    private String password;
+
+    private String adresse;
+
+    private String tel;
+
+    private String cin;
+
+    private String dateNaissance;
+
+    private boolean etat;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "utilisateur_roles",
+        joinColumns = @JoinColumn(name = "utilisateur_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<RoleUtilisateur> roleUtilisateurs;
 }

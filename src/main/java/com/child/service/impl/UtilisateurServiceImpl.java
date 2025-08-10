@@ -14,12 +14,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.child.model.RoleUtilisateur;
 import com.child.model.Utilisateur;
 import com.child.repo.RoleRepo;
 import com.child.repo.UtilisateurRepo;
 import com.child.service.UtilisateurService;
+
+import jakarta.transaction.Transactional;
 @Service
 public class UtilisateurServiceImpl implements UtilisateurService {
 @Autowired
@@ -75,34 +78,34 @@ private JavaMailSender mailSender;
 	}
 	 
 
-    public void processForgotPassword(String email) {
-        Utilisateur user = utilisateurRepo.findByEmail(email);
-        if (user == null) {
-            throw new UsernameNotFoundException("No user found with email: " + email);
-        }
+	 @Override
+	    public Utilisateur createUser(Utilisateur utilisateur) {
+	        if (!StringUtils.hasText(utilisateur.getEmail())) {
+	            throw new IllegalArgumentException("Email must not be empty");
+	        }
 
-        // Generate a reset token
-        String token = UUID.randomUUID().toString();
-        user.setResetToken(token);
-        utilisateurRepo.save(user);
+	        if (utilisateurRepo.existsByEmail(utilisateur.getEmail())) {
+	            throw new IllegalStateException("Email already in use: " + utilisateur.getEmail());
+	        }
 
-        // Send email with reset link
-        String resetLink = "http://localhost:4200/reset-password?token=" + token;
-        sendEmail(user.getEmail(), resetLink);
-    }
+	        if (!StringUtils.hasText(utilisateur.getPassword()) || utilisateur.getPassword().length() < 6) {
+	            throw new IllegalArgumentException("Password must be at least 6 characters long");
+	        }
 
-    private void sendEmail(String to, String resetLink) {
-        try {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setTo(to);
-            message.setSubject("Password Reset Request");
-            message.setText("Click the link to reset your password: " + resetLink);
-            mailSender.send(message);
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Log the exception and rethrow it or handle it as needed
-        }
-    }
+	        utilisateur.setPassword(passwordEncoder.encode(utilisateur.getPassword()));
+
+	        Set<RoleUtilisateur> roles = new HashSet<>();
+	        RoleUtilisateur parentRole = roleRepo.findByNomRoles("PARENT");
+	        if (parentRole == null) {
+	            throw new IllegalStateException("Role PARENT not found in database");
+	        }
+	        roles.add(parentRole);
+	        utilisateur.setRoleUtilisateurs(roles);
+
+	        utilisateur.setEtat(true);
+
+	        return utilisateurRepo.save(utilisateur);
+	    }
 
     public Utilisateur getUserByResetToken(String token) {
         return utilisateurRepo.findByResetToken(token);
