@@ -16,7 +16,6 @@ public interface UtilisateurRepo extends JpaRepository<Utilisateur, Long>{
 	Utilisateur  findByEmail(String email); 
 	 @Query("SELECT u FROM Utilisateur u JOIN u.roleUtilisateurs r WHERE r.nomRoles = :roleName")
 	    List<Utilisateur> findByRoleName(@Param("roleName") String roleName);
-	Utilisateur findByResetToken(String token);
 	
 	 	boolean existsByRoleUtilisateursContains(Set<RoleUtilisateur> singleton);
 

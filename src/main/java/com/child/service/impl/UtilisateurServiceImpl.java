@@ -107,9 +107,7 @@ private JavaMailSender mailSender;
 	        return utilisateurRepo.save(utilisateur);
 	    }
 
-    public Utilisateur getUserByResetToken(String token) {
-        return utilisateurRepo.findByResetToken(token);
-    }
+ 
 
     public void updatePassword(Utilisateur user, String newPassword) {
         user.setPassword(newPassword);
