@@ -46,5 +46,7 @@ private LocalDate datePaiement; // date effective du paiement
 
 
 @Lob
-private byte[] recuPdf; // PDF généré et stocké en DB (optionnel)
+@Column(name = "recu_pdf")
+private byte[] recuPdf;
+
 }
