@@ -36,9 +36,9 @@ public class SecurityConfig {
       SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
-                .authorizeHttpRequests(request -> request.requestMatchers("/auth/**").permitAll()
- 						.requestMatchers("/api/utilisateur/ajouterSuperAdmin").permitAll()
-                		 
+                .authorizeHttpRequests(request -> request.requestMatchers("/auth/login").permitAll()
+  						.requestMatchers("/api/paiements/**").permitAll()
+                 		 
                    
                         .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

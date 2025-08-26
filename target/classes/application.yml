@@ -3,10 +3,10 @@ spring:
     name: child
 
   datasource:
-    url: jdbc:postgresql://dpg-d27o5pe3jp1c73fhs7ug-a:5432/children
-    username: children_user
-    password: mUSj7Kwz8spEtt2p6zS5tgwHazkjycLu
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:mysql://localhost:3306/children
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     generate-ddl: true
@@ -14,7 +14,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.MySQL8Dialect
 
   servlet:
     multipart:
@@ -24,14 +24,19 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: your-email@gmail.com
-    password: your-email-password
+    username: elmorched.91n@gmail.com
+    password: mpbz szie qljw yemo
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
+
+twilio:
+  account-sid: AC9d6a6b008d255cc8ae64a371fcaadecc
+  auth-token: 81f7d7925d0d7e99a4aa59fc5434c0dd
+  phone-number: +21695929656
 
 logging:
   level:

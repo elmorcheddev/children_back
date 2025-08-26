@@ -48,8 +48,7 @@ public class AdminInitializer implements CommandLineRunner {
             roleUtilisateurRepo.save(TEACHER);
         }
         RoleUtilisateur roles = roleUtilisateurRepo.findByNomRoles("ADMIN");
-		    boolean adminbyRolesExists = utilisateurRepo.existsByRoleUtilisateursContains(Collections.singleton(roleUtilisateurRepo.findByNomRoles("ADMIN")));
-
+       boolean  adminbyRolesExists = utilisateurRepo.existsByRole(roles);
         Set<RoleUtilisateur> listRole=new HashSet<>();
          listRole.add(roles);
          Utilisateur utilisateur = new Utilisateur();
@@ -60,7 +59,7 @@ public class AdminInitializer implements CommandLineRunner {
         	 utilisateur.setPassword(new BCryptPasswordEncoder().encode("adminadmin"));
         	 utilisateur.setAdresse("tunis");
 	        	 utilisateur.setEtat(true);
-	        	 utilisateur.setRoleUtilisateurs(listRole);
+	        	 utilisateur.setRole(roles);
         	 utilisateur.setEtat(true);
 
           

@@ -1,12 +1,11 @@
 package com.child.model;
 
-
+import java.util.List;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Entity
-@Table(name = "teachers")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,16 +17,31 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Link to user account for login/auth
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "utilisateur_id", nullable = false)
-    private Utilisateur utilisateur;
+    @NotBlank
+    private String nom;
 
     @NotBlank
-    private String qualification;
+    private String prenom;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id")
-    private Group group;  // the class/group teacher is responsible for
+    @Email
+    @Column(unique = true)
+    private String email;
+
+    @NotBlank
+    private String telephone;
+
+    private String adresse;
+
+    @NotBlank
+    private String specialite; // ex: éducatrice maternelle, psychologue...
+
+    private Integer experience; // nb d’années d’expérience
+
+    private String diplome; // diplômes obtenus
+
+    private String sexe; // Homme / Femme
+
+    private String dateNaissance;
+
+ 
 }
-

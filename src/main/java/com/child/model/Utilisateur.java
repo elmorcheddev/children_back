@@ -8,7 +8,6 @@ import lombok.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "utilisateurs")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -43,9 +42,7 @@ public class Utilisateur {
 
     private boolean etat;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "utilisateur_roles",
-        joinColumns = @JoinColumn(name = "utilisateur_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<RoleUtilisateur> roleUtilisateurs;
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private RoleUtilisateur role;
 }

@@ -11,19 +11,23 @@ public class CorsConfiguration {
     private static final String POST = "POST";
     private static final String PUT = "PUT";
     private static final String DELETE = "DELETE";
-@Bean
- WebMvcConfigurer corsConfigurer() {
-	
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
+    private static final String OPTIONS = "OPTIONS";
+    @Bean
+    WebMvcConfigurer corsConfigurer() {
+   	
+   		return new WebMvcConfigurer() {
+   			@Override
+   			 public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-						.allowedMethods(GET,POST,DELETE,PUT)
-						.allowedHeaders("*")
-						.allowedOriginPatterns("*")
-						.allowCredentials(true);
-			}
-		};
-		
-	}
+				.allowedMethods(GET,POST,DELETE,PUT)
+				.allowedHeaders("*")
+                .allowedOrigins("http://localhost:4200")
+				.allowCredentials(true)
+
+                           .exposedHeaders("Content-Disposition");  
+                         
+               }
+   		};
+   		
+   	}
 }
