@@ -46,7 +46,7 @@ private LocalDate datePaiement; // date effective du paiement
 
 
 @Lob
-@Column(name = "recu_pdf")
+@Column(name = "recu_pdf", columnDefinition = "bytea")
 private byte[] recuPdf;
 
 }
