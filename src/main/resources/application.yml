@@ -52,6 +52,8 @@ spring:
     username: neondb_owner
     password: "npg_gdkxTbFtC86l"
     driver-class-name: org.postgresql.Driver
+    hikari:
+      auto-commit: false   # 🔥 Important fix for Large Objects
 
   jpa:
     generate-ddl: true

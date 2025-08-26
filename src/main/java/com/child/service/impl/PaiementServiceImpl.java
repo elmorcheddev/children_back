@@ -21,6 +21,7 @@ import com.itextpdf.layout.properties.UnitValue;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -40,7 +41,7 @@ public class PaiementServiceImpl implements PaiementService {
     private final EnfantRepo enfantRepo;
     private final PaiementRepository paiementRepository;
     private final JavaMailSender mailSender;
-
+    @Transactional
     @Override
     public Paiement createPaiement(Long parentId, Long enfantId, Double montant, String mois, String modePaiement) {
         Parent parent = parentRepo.findById(parentId)
