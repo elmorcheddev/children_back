@@ -1,12 +1,57 @@
+#spring:
+#  application:
+#    name: child
+#
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/children
+#    username: root
+#    password: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#
+#  jpa:
+#    generate-ddl: true
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#
+#  servlet:
+#    multipart:
+#      max-file-size: 100MB
+#      max-request-size: 100MB
+#
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: elmorched.91n@gmail.com
+#    password: mpbz szie qljw yemo
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
+#
+#twilio:
+#  account-sid: AC9d6a6b008d255cc8ae64a371fcaadecc
+#  auth-token: 81f7d7925d0d7e99a4aa59fc5434c0dd
+#  phone-number: +21695929656
+#
+#logging:
+#  level:
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#    org.springframework.orm.jpa: DEBUG
 spring:
   application:
     name: child
 
   datasource:
-    url: jdbc:mysql://localhost:3306/children
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:postgresql://ep-late-bar-a2l46hlz-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require
+    username: neondb_owner
+    password: "npg_gdkxTbFtC86l"
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     generate-ddl: true
@@ -14,7 +59,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
   servlet:
     multipart:
@@ -25,7 +70,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: elmorched.91n@gmail.com
-    password: mpbz szie qljw yemo
+    password: "mpbz szie qljw yemo"   # Gmail app password
     properties:
       mail:
         smtp:
@@ -36,7 +81,7 @@ spring:
 twilio:
   account-sid: AC9d6a6b008d255cc8ae64a371fcaadecc
   auth-token: 81f7d7925d0d7e99a4aa59fc5434c0dd
-  phone-number: +21695929656
+  phone-number: "+21695929656"
 
 logging:
   level:
